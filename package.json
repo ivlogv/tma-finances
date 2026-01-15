@@ -1,9 +1,9 @@
 {
-  "name": "vuejs-template",
+  "name": "tma-finances",
   "version": "0.0.1",
   "private": true,
   "type": "module",
-  "homepage": "https://telegram-mini-apps.github.io/vuejs-template",
+  "homepage": "https://ivlogv.github.io/tma-finances",
   "scripts": {
     "deploy": "gh-pages -d dist",
     "dev": "vite",
