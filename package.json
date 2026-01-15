@@ -42,5 +42,10 @@
     "vite-plugin-mkcert": "^1.17.9",
     "vite-plugin-vue-devtools": "^8.0.5",
     "vue-tsc": "^3.2.2"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }

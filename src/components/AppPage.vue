@@ -26,6 +26,7 @@ defineProps<{ title: string, disclaimer?: string }>();
   height: 100%;
   padding: 16px;
   box-sizing: border-box;
+  margin-top: 80px;
 }
 
 /* Title */
