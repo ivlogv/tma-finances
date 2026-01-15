@@ -4,6 +4,7 @@ defineProps<{ title: string, disclaimer?: string }>();
 
 <template>
   <div class="page">
+    <div class="page__top-margin"></div>
     <h1 class="page__title">{{ title }}</h1>
     <div v-if="disclaimer" class="page__disclaimer">{{ disclaimer }}</div>
 
@@ -26,7 +27,12 @@ defineProps<{ title: string, disclaimer?: string }>();
   height: 100%;
   padding: 16px;
   box-sizing: border-box;
-  margin-top: 80px;
+  /* margin-top: 80px; */
+}
+
+.page__top-margin {
+  height: 80px;
+  background: transparent;
 }
 
 /* Title */
