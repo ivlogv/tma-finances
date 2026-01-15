@@ -12,6 +12,34 @@ import {
   backButton,
 } from '@tma.js/sdk-vue';
 
+export function toSnakeCaseTheme(
+  params: Partial<ThemeParams>
+): Record<string, `#${string}` | undefined> {
+  const result: Record<string, `#${string}` | undefined> = {}
+
+  for (const key of Object.keys(params) as (keyof ThemeParams)[]) {
+    const keyStr = String(key)
+    const snake = keyStr.replace(/[A-Z]/g, m => '_' + m.toLowerCase())
+
+    const value = params[key]
+
+    // Если это ref/computed — берём .value
+    const resolved =
+      typeof value === 'object' && value !== null && 'value' in value
+        ? (value as { value: unknown }).value
+        : value
+
+    // Пропускаем undefined
+    if (resolved === undefined) continue
+
+    // Приводим к типу `#${string}`
+    result[snake] = resolved as `#${string}`
+  }
+
+  return result
+}
+
+
 /**
  * Initializes the application and configures its dependencies.
  */
@@ -40,14 +68,14 @@ export async function init(options: {
     mockTelegramEnv({
       onEvent(event, next) {
         if (event.name === 'web_app_request_theme') {
-          let tp: ThemeParams = {};
+          let tp: Partial<ThemeParams> = {};
           if (firstThemeSent) {
             tp = themeParams.state();
           } else {
             firstThemeSent = true;
-            tp ||= retrieveLaunchParams().tgWebAppThemeParams;
+            tp ||= retrieveLaunchParams().tgWebAppThemeParams as Partial<ThemeParams>;
           }
-          return emitEvent('theme_changed', { theme_params: tp });
+          return emitEvent('theme_changed', { theme_params: toSnakeCaseTheme(tp) });
         }
 
         if (event.name === 'web_app_request_safe_area') {

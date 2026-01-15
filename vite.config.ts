@@ -1,13 +1,13 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from "node:url";
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
-import mkcert from 'vite-plugin-mkcert'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import vueDevTools from "vite-plugin-vue-devtools";
+import mkcert from "vite-plugin-mkcert";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/tma-finances',
+  base: "/tma-finances",
   plugins: [
     vue(),
     vueDevTools(),
@@ -18,12 +18,15 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
-  publicDir: './public',
+  publicDir: "./public",
   server: {
     // Exposes your dev server and makes it accessible for the devices in the same network.
     host: true,
   },
-})
+  build: {
+    chunkSizeWarningLimit: 1500
+  },
+});
