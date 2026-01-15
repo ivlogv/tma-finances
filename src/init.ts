@@ -10,6 +10,8 @@ import {
   emitEvent,
   miniApp,
   backButton,
+  mainButton,
+  postEvent,
 } from '@tma.js/sdk-vue';
 
 export function toSnakeCaseTheme(
@@ -91,6 +93,11 @@ export async function init(options: {
   backButton.mount.ifAvailable();
   initData.restore();
 
+  const platform = retrieveLaunchParams()?.tgWebAppPlatform;
+  if (platform === "android" || platform === "ios") {
+    postEvent("web_app_request_fullscreen");
+  }
+
   if (miniApp.mount.isAvailable()) {
     themeParams.mount();
     miniApp.mount();
@@ -101,5 +108,10 @@ export async function init(options: {
     viewport.mount().then(() => {
       viewport.bindCssVars();
     });
+  }
+
+  if (mainButton.mount.ifAvailable()) {
+    mainButton.mount();
+    console.log("Main button mounted");
   }
 }
