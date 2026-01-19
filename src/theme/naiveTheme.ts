@@ -4,7 +4,7 @@ import type { GlobalThemeOverrides } from 'naive-ui'
 
 export function useNaiveTheme() {
   const tp = useSignal(themeParams.state);
-  console.log(tp);
+  // console.log(tp);
 
   const themeOverrides = computed<GlobalThemeOverrides>(() => ({
     common: {

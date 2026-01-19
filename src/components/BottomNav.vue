@@ -49,17 +49,15 @@ function navigate(path: string) {
 .bottom-nav {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   gap: 8px;
-
-  /* padding: 8px 0; */
+  
   background: var(--tg-theme-bg-color);
   z-index: 100;
 }
 
 .nav-item {
-  /* flex: 1; */
   display: flex;
   flex-direction: column;
   align-items: center;

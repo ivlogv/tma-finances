@@ -63,14 +63,14 @@ defineProps<{ title: string, disclaimer?: string }>();
 /* Bottom bar */
 .page__bottom-bar {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 8px;
+  left: 16px;
+  right: 16px;
 
   padding: 8px 16px;
   background: var(--tg-theme-bg-color);
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
-
+  border-radius: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
